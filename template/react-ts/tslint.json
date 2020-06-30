@@ -1,0 +1,10 @@
+{
+  "extends": ["tslint-react-hooks", "tslint-eslint-rules"],
+  "defaultSeverity": "warning",
+  "linterOptions": {
+    "exclude": ["src/**/*.md", "dist", "src/assets", "@bee/*"]
+  },
+  "rules": {
+    "react-hooks-nesting": "error"
+  }
+}

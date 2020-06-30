@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+
+const program = require("commander");
+
+program
+  .usage("[options] -t")
+  .option("-m, --module [module]", "模块名称")
+  .parse(process.argv);
+
+const {join} = require("path");
+const {spawn} = require("child_process");
+
+const build = spawn(
+  "node",
+  [
+    `${join(
+      __dirname,
+      "../node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+    )}`,
+    "--watch",
+    "--config",
+    `${join(__dirname, `../lib/build/webpack.dev.js`)}`,
+    program.module ?  ` --env.name ${program.module}` : ''
+  ],
+  {
+    stdio: "inherit",
+    shell: true,
+    cwd: process.cwd()
+  }
+);
+
+build.on("error", error => console.error(error));
+
+build.on("exit", code => {
+  console.log("exit", code);
+  process.exitCode = code;
+  process.exit();
+});

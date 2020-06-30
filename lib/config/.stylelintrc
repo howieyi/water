@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "block-no-empty": null,
+    "color-no-invalid-hex": true,
+    "comment-empty-line-before": null,
+    "max-empty-lines": 2,
+    "rule-empty-line-before": null,
+    "unit-whitelist": ["em", "rem", "%", "s", "px", "deg", "vw", "vh", "pc", "turn"]
+  }
+}

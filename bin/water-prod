@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+
+const {red} = require("chalk");
+const program = require("commander");
+
+program
+  .usage("[options] -i -m [module] -e [env]")
+  .option("-m, --module [module]", "模块名称")
+  .option("-i, --info", "是否打印记录")
+  .option("-e, --env [env]", "发布环境[dev, uat, prod, front...]")
+  .parse(process.argv);
+
+const {getApp, getPackageInfo} = require("../lib/utils/getConfig");
+const appConfig = getApp(program.module || null);
+
+if (!appConfig) {
+  console.error(red("> 缺少 app 配置"));
+  return;
+}
+
+const webpack = require("webpack");
+const isInfo = program.info;
+// 发布环境标识，用作区分不同环境的 bucket
+const env = program.env;
+
+webpackConfig = require(`../lib/build/webpack.prod.js`)({
+  ...appConfig
+});
+
+const buildStamp = Date.now();
+
+webpack(webpackConfig, async (err, stats) => {
+  if (err || stats.hasErrors()) {
+    if (err) {
+      console.error(red(err.stack || err));
+      err.details && console.error(red(err.details));
+      return;
+    }
+
+    stats.hasErrors() && console.error(stats.toString({colors: true, chunks: false}));
+
+    console.log("\n> 构建异常 \n");
+  } else {
+    isInfo && console.warn(stats.toString({colors: true, chunks: false}));
+
+    console.log(`\n> 构建完成，耗时 ${Date.now() - buildStamp} ms`);
+  }
+});

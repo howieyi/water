@@ -1,0 +1,28 @@
+{
+  "name": "waterret-react-ts",
+  "version": "0.0.1",
+  "author": "水逆",
+  "license": "MIT",
+  "scripts": {
+    "dev": "water dev",
+    "prod": "water prod -i"
+  },
+  "dependencies": {
+    "@types/node": "^12.12.7",
+    "normalize.css": "^8.0.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
+    "xhr": "^2.5.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-react-hooks": "^1.6.1",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-react-hooks": "^2.1.1"
+  },
+  "sideEffects": false,
+  "browserslist": [
+    "ie >= 9",
+    "last 5 versions"
+  ]
+}
