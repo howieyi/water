@@ -1,5 +1,5 @@
 {
-  "name": "water-react-ts",
+  "name": "water-react",
   "version": "0.0.1",
   "author": "水逆",
   "license": "MIT",
@@ -15,11 +15,7 @@
     "react-router-dom": "^5.0.1",
     "xhr": "^2.5.0"
   },
-  "devDependencies": {
-    "eslint-plugin-react-hooks": "^1.6.1",
-    "tslint-eslint-rules": "^5.4.0",
-    "tslint-react-hooks": "^2.1.1"
-  },
+  "devDependencies": {},
   "sideEffects": false,
   "browserslist": [
     "ie >= 9",
