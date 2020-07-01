@@ -20,7 +20,6 @@ uriPrefix.map(
 );
 
 module.exports = {
-  name: "react-ts",
   port: 3001,
   analyzerPort: null,
   resolvePath: "src",
@@ -29,4 +28,10 @@ module.exports = {
   buildPath: "./dist",
   copyPath: "./src/assets/public",
   proxy: proxyMapping,
+  css: ["sass"],
+  markdown: false,
+  react: {
+    antd: true,
+    antdLess: "./src/assets/styles/antd.less",
+  },
 };
