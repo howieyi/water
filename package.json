@@ -1,7 +1,13 @@
 {
   "name": "@water/cli",
   "version": "0.0.1",
-  "description": "",
+  "description": "基于 react、vue 的 cli 整合工具",
+  "keywords": [
+    "webpack",
+    "vue",
+    "react",
+    "cli"
+  ],
   "bin": {
     "water": "bin/water",
     "water-create": "bin/water-create",
