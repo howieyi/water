@@ -1,0 +1,19 @@
+{
+  "name": "water-vue-app",
+  "version": "0.0.1",
+  "description": "vue 模板",
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "vue": "^2.6.10",
+    "xhr": "^2.5.0",
+    "vue-router": "^3.0.6"
+  },
+  "typings": "typings",
+  "devDependencies": {},
+  "scripts": {
+    "dev": "water dev",
+    "prod": "water prod -i"
+  },
+  "author": "水逆",
+  "license": "ISC"
+}
