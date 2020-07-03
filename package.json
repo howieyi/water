@@ -1,5 +1,5 @@
 {
-  "name": "@howieyi/water",
+  "name": "iwater",
   "version": "0.0.1",
   "description": "基于 react、vue 的 cli 整合工具",
   "keywords": [
@@ -22,12 +22,9 @@
   "bugs": {
     "url": "https://github.com/howieyi/water/issues"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "homepage": "https://github.com/howieyi/water",
   "author": "水逆",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.10.3",
     "@babel/plugin-proposal-class-properties": "^7.10.1",

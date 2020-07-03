@@ -9,9 +9,9 @@
 ### 安装
 
 ```bash
-$ npm i -g @howieyi/water
+$ npm i -g iwater
 or
-$ yarn global add @howieyi/water
+$ yarn global add iwater
 
 $ water
 Usage: water
