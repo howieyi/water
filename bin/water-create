@@ -1,2 +1,51 @@
 #!/usr/bin/env node
 
+const { join } = require("path");
+const { prompt } = require("inquirer");
+const chalk = require("chalk");
+
+const { copyFolder } = require("../lib/utils/file");
+
+const developPath = process.cwd();
+const waterPath = join(__dirname, "..");
+const templatePathPrefix = "template";
+
+prompt([
+  {
+    type: "input",
+    name: "name",
+    message: "项目名称：",
+    default: "water-ui",
+  },
+  {
+    type: "list",
+    name: "language",
+    choices: ["react", "vue"],
+    message: "开发语言：",
+    default: "react",
+  },
+  {
+    type: "confirm",
+    name: "typescript",
+    message: "使用 Typescript：",
+    default: "Y",
+  },
+])
+  .then(({ name, typescript, language }) => {
+    const templateName = `${language}${typescript ? "-ts" : ""}`;
+    const templatePath = join(waterPath, templatePathPrefix, templateName);
+    const toPath = join(developPath, name);
+
+    // 复制项目模板
+    copyFolder(templatePath, toPath);
+    console.log(chalk.green("> ") + "初始化完成");
+  })
+  .catch((error) => {
+    if (error.isTtyError) {
+      console.error("当前环境暂不支持");
+      // Prompt couldn't be rendered in the current environment
+    } else {
+      // Something else when wrong
+      console.error(error);
+    }
+  });
