@@ -9,9 +9,9 @@
 ### 安装
 
 ```bash
-$ npm i -g @water/cli
+$ npm i -g @howieyi/water
 or
-$ yarn global add  @water/cli
+$ yarn global add @howieyi/water
 
 $ water
 Usage: water
@@ -302,6 +302,14 @@ module.exports = {
   buildPath: "./dist",
 };
 ```
+
+## TODO
+
+1. 模板优化；
+
+- 范例化，增加更多可选支持，比如 element-ui/antd 相关模板支持，再比如 vuex/mobx 相关模板支持，等等；
+
+2. 集成自动化测试；
 
 ## 关于我
 
