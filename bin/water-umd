@@ -1,16 +1,15 @@
 #!/usr/bin/env node
 
-const {red} = require("chalk");
+const { red } = require("chalk");
 const program = require("commander");
 
 program
-  .usage("[options] -i")
+  .usage("[options] -i -m [module]")
   .option("-m, --module [module]", "模块名称")
-  .option("-t, --type [type]", "语言类型, vue/react/angular")
   .option("-i, --info", "是否打印记录")
   .parse(process.argv);
 
-const {getApp} = require("../lib/utils/getConfig");
+const { getApp } = require("../lib/utils/getConfig");
 const appConfig = getApp(program.module || null);
 
 if (!appConfig) {
@@ -22,7 +21,7 @@ const webpack = require("webpack");
 const isInfo = program.info;
 
 webpackConfig = require(`../lib/build/webpack.umd.js`)({
-  ...appConfig
+  ...appConfig,
 });
 
 const buildStamp = Date.now();
@@ -35,11 +34,12 @@ webpack(webpackConfig, async (err, stats) => {
       return;
     }
 
-    stats.hasErrors() && console.error(stats.toString({colors: true, chunks: false}));
+    stats.hasErrors() &&
+      console.error(stats.toString({ colors: true, chunks: false }));
 
     console.log("\n> 构建异常 \n");
   } else {
-    isInfo && console.warn(stats.toString({colors: true, chunks: false}));
+    isInfo && console.warn(stats.toString({ colors: true, chunks: false }));
 
     console.log(`\n> 构建完成，耗时 ${Date.now() - buildStamp} ms`);
   }
