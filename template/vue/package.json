@@ -9,7 +9,10 @@
     "vue-router": "^3.0.6"
   },
   "typings": "typings",
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/runtime-corejs3": "^7.10.4",
+    "tslib": "^2.0.0"
+  },
   "scripts": {
     "dev": "water dev",
     "prod": "water prod -i"
