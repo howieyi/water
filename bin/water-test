@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+const program = require("commander");
+
+program
+  .usage("[options] -m [module]")
+  .option("-m, --module [module]", "模块名称")
+  .parse(process.argv);
+

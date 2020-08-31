@@ -7,32 +7,30 @@ program
   .option("-m, --module [module]", "模块名称")
   .parse(process.argv);
 
-const {join} = require("path");
-const {spawn} = require("child_process");
+const { getApp } = require("../lib/utils/getConfig");
+const appConfig = getApp(program.module || null);
 
-const build = spawn(
-  "node",
-  [
-    `${join(
-      __dirname,
-      "../node_modules/webpack-dev-server/bin/webpack-dev-server.js"
-    )}`,
-    "--watch",
-    "--config",
-    `${join(__dirname, `../lib/build/webpack.dev.js`)}`,
-    program.module ?  ` --env.name ${program.module}` : ''
-  ],
-  {
-    stdio: "inherit",
-    shell: true,
-    cwd: process.cwd()
-  }
-);
+if (!appConfig) {
+  console.error(red("> 缺少 app 配置"));
+  return;
+}
 
-build.on("error", error => console.error(error));
-
-build.on("exit", code => {
-  console.log("exit", code);
-  process.exitCode = code;
-  process.exit();
+const webpackConfig = require(`../lib/build/webpack.dev.js`)({
+  ...appConfig,
 });
+
+const webpack = require("webpack");
+const WebpackDevServer = require("webpack-dev-server");
+
+try {
+  const devServerConfig = webpackConfig.devServer;
+  const server = new WebpackDevServer(webpack(webpackConfig), devServerConfig);
+  server.listen(devServerConfig.port, devServerConfig.host, (err) => {
+    if (err) {
+      throw err;
+    }
+  });
+} catch (error) {
+  console.error(error);
+  process.exit(-1);
+}

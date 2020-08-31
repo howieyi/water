@@ -7,7 +7,6 @@ program
   .usage("[options] -i -m [module] -e [env]")
   .option("-m, --module [module]", "模块名称")
   .option("-i, --info", "是否打印记录")
-  .option("-e, --env [env]", "发布环境[dev, uat, prod]")
   .parse(process.argv);
 
 const {getApp, getPackageInfo} = require("../lib/utils/getConfig");
@@ -20,8 +19,6 @@ if (!appConfig) {
 
 const webpack = require("webpack");
 const isInfo = program.info;
-// 发布环境标识，用作区分不同环境的 bucket
-const env = program.env;
 
 webpackConfig = require(`../lib/build/webpack.prod.js`)({
   ...appConfig
