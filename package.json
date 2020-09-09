@@ -1,7 +1,7 @@
 {
   "name": "iwater",
   "version": "0.0.2",
-  "description": "基于 react、vue 的 cli 脚手架工具",
+  "description": "基于 react、vue 的 cli 脚手架构建工具",
   "keywords": [
     "webpack",
     "vue",
