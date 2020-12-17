@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const {red} = require("chalk");
+const { red } = require("chalk");
 const program = require("commander");
 
 program
@@ -9,8 +9,8 @@ program
   .option("-i, --info", "是否打印记录")
   .parse(process.argv);
 
-const {getApp, getPackageInfo} = require("../lib/utils/getConfig");
-const appConfig = getApp(program.module || null);
+const { getApp } = require("../lib/utils/getConfig");
+const appConfig = getApp(program.module || null, { env: "prod" });
 
 if (!appConfig) {
   console.error(red("> 缺少 app 配置"));
@@ -21,7 +21,7 @@ const webpack = require("webpack");
 const isInfo = program.info;
 
 webpackConfig = require(`../lib/build/webpack.prod.js`)({
-  ...appConfig
+  ...appConfig,
 });
 
 const buildStamp = Date.now();
@@ -34,11 +34,11 @@ webpack(webpackConfig, async (err, stats) => {
       return;
     }
 
-    stats.hasErrors() && console.error(stats.toString({colors: true, chunks: false}));
+    stats.hasErrors() && console.error(stats.toString({ colors: true, chunks: false }));
 
     console.log("\n> 构建异常 \n");
   } else {
-    isInfo && console.warn(stats.toString({colors: true, chunks: false}));
+    isInfo && console.warn(stats.toString({ colors: true, chunks: false }));
 
     console.log(`\n> 构建完成，耗时 ${Date.now() - buildStamp} ms`);
   }

@@ -10,7 +10,7 @@ program
   .parse(process.argv);
 
 const { getApp } = require("../lib/utils/getConfig");
-const appConfig = getApp(program.module || null);
+const appConfig = getApp(program.module || null, { env: "umd" });
 
 if (!appConfig) {
   console.error(red("> 缺少 app 配置"));
@@ -34,8 +34,7 @@ webpack(webpackConfig, async (err, stats) => {
       return;
     }
 
-    stats.hasErrors() &&
-      console.error(stats.toString({ colors: true, chunks: false }));
+    stats.hasErrors() && console.error(stats.toString({ colors: true, chunks: false }));
 
     console.log("\n> 构建异常 \n");
   } else {
