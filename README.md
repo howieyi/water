@@ -4,6 +4,7 @@
 
 - 基于 `webpack` 整合前端项目中构建配置流程，业务和工程解耦，让开发者可以更专注业务；
 - 目前支持 vue/react 项目开发、生产构建流程；
+- v0.1.0+ 开始升级 webpack5+
 
 ## 使用说明
 
@@ -211,7 +212,7 @@ const uriPrefix = ["/api"];
 
 // 代理映射
 uriPrefix.map(
-  (uri) =>
+  uri =>
     (proxyMapping[uri] = {
       target: apiPrefix,
       changeOrigin: true,
